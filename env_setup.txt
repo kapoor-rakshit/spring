@@ -1,0 +1,25 @@
+Reference : https://javabrains.thinkific.com/courses/take/learning-spring-core/multimedia/2826189-setting-up
+          : https://www.tutorialspoint.com/spring/spring_environment_setup.htm
+
+
+Download the latest release from  :  https://repo.spring.io/release/org/springframework/spring
+
+                                  :  download zip file - spring-framework-XXX.RELEASE-dist.zip  and  extract
+                                     (This file contains all required .jars)
+
+Download Apache common loggings   :  http://commons.apache.org/proper/commons-logging/download_logging.cgi
+                                     (Download BINARY zip file  and  extract)
+
+
+
+1. On a new project in EclipseIDE
+
+. Right click proj ---> Properties ---> Java Build Path ---> Libraries ---> Add library ---> userlibrary ---> UserLibraries
+. either select already existing userlib or create NEW (name userlib)  ---> Add external jars ---> add SPRING and APACHE_COMMON_LOGGINGS jars from downloaded files above
+
+
+
+NOTES
+
+1. SPRING uses SPRING BEAN FACTORY to maintain OBJECT LIFECYCLE.
+   The factory uses the XML file to generate/configure a bean and then later refer to the object.
