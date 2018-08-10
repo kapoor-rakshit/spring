@@ -1,1 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+<!-- A bean is an object with unique "id" and "class" as same of bean (object) created for -->
+
+<bean id = "triangle" class = "springproj.triangle_objinjection">    <!-- "id to be referenced" and class is "package.class" -->
+
+                                                                     <!-- preset value of member var(s) when object is handed via bean -->
+                                                        
+<!-- <property name = "type" value = "Right angled"></property>        uses setter method of class and called SETTER INJECTION -->
+
+
+<!-- <constructor-arg value = "40"></constructor-arg>      uses constructor of class and called CONSTRUCTOR INJECTION -->
+<!--                                                       searches for constructor with two args and assigns in order as here ie 40, 20 -->
+<!-- <constructor-arg value = "20"></constructor-arg> -->
+
+
+<!-- <constructor-arg index = "1" value = "40"></constructor-arg>      uses constructor of class and called CONSTRUCTOR INJECTION -->
+<!--                                                                   searches for constructor with two args and assigns wrt index specified -->
+<!-- <constructor-arg index = "0" value = "20"></constructor-arg> -->
+
+
+<!-- <constructor-arg type = "java.lang.String" value = "40"></constructor-arg>      uses constructor of class and called CONSTRUCTOR INJECTION -->
+<!--                                                                                 searches for constructor with two args and assigns wrt data types -->
+<!-- <constructor-arg type = "int" value = "20"></constructor-arg> -->
+
+
+<property name="pointA" ref="pointABEAN"></property>                   <!-- use reference of another bean (object) and called OBJECT INJECTION -->
+<property name="pointB" ref="pointBBEAN"></property>
+<property name="pointC" ref="pointCBEAN"></property>
+
+</bean>
+
+<bean id="pointABEAN" class="springproj.point_for_triangle_objinjection">            <!-- bean (objects) for point_triangle with their member vars-->
+<property name="x" value="1089"></property>
+<property name="y" value="1090"></property>
+</bean>
+
+<bean id="pointBBEAN" class="springproj.point_for_triangle_objinjection">
+<property name="x" value="9025"></property>
+<property name="y" value="4086"></property>
+</bean>
+
+<bean id="pointCBEAN" class="springproj.point_for_triangle_objinjection">
+<property name="x" value="9025"></property>
+<property name="y" value="4084"></property>
+</bean>
+
+</beans>

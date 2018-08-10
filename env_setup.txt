@@ -23,3 +23,46 @@ NOTES
 
 1. SPRING uses SPRING BEAN FACTORY to maintain OBJECT LIFECYCLE.
    The factory uses the XML file to generate/configure a bean and then later refer to the object.
+
+
+2. DEPENDENCY INJECTION is the most powerful feature of SPRING
+.  SETTER INJECTION
+.  CONSTRUCTOR INJECTION
+.  OBJECT INJECTION
+
+
+3. INNER BEANS
+.  if a bean (object) is specific to be referenced for a specific bean (object) then use following syntax
+
+<bean id="" class="">
+
+  <property name="" ref=""></property>                  <!-- reference to external bean -->
+
+  <property name="">                                    <!-- use of inner beans -->
+
+   <bean class="">
+     <property name="" value=""></property>    
+     <property name="" value=""></property>
+   </bean>
+
+  </property>
+
+</bean>
+
+
+4. ALIAS
+use of another name of bean id as follows
+
+<alias name="actual_bean_id"  alias="alias_id"></alias>
+
+
+5. IDREF
+use idref to make sure a id exist for the reference made. It will throw error if the bean with that id does not exist.
+
+<property name="">
+
+<idref="id_of_bean"></idref>
+
+</property>
+
+
