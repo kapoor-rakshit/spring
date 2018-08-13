@@ -19,16 +19,19 @@ Download Apache common loggings   :  http://commons.apache.org/proper/commons-lo
 
 
 
-NOTES
+--------------------------------------------------------------------------NOTES-------------------------------------------------
 
 1. SPRING uses SPRING BEAN FACTORY to maintain OBJECT LIFECYCLE.
+   Each bean is configured with a class.
    The factory uses the XML file to generate/configure a bean and then later refer to the object.
+
 
 
 2. DEPENDENCY INJECTION is the most powerful feature of SPRING
 .  SETTER INJECTION
 .  CONSTRUCTOR INJECTION
 .  OBJECT INJECTION
+
 
 
 3. INNER BEANS
@@ -38,7 +41,7 @@ NOTES
 
   <property name="" ref=""></property>                  <!-- reference to external bean -->
 
-  <property name="">                                    <!-- use of inner beans -->
+  <property name="">                                    <!-- use of inner beans without ref-->
 
    <bean class="">
      <property name="" value=""></property>    
@@ -50,10 +53,12 @@ NOTES
 </bean>
 
 
+
 4. ALIAS
 use of another name of bean id as follows
 
 <alias name="actual_bean_id"  alias="alias_id"></alias>
+
 
 
 5. IDREF
@@ -64,5 +69,99 @@ use idref to make sure a id exist for the reference made. It will throw error if
 <idref="id_of_bean"></idref>
 
 </property>
+
+
+
+6. USING COLLECTIONS
+use List, Hash, Map tools in SPRING
+
+<property name="">
+
+ <list>                        <!-- define list tag and give reference(s)/value(s) -->
+
+  <ref bean=""></ref>          <!-- give reference to bean id -->
+  <ref bean=""></ref>
+  <ref bean=""></ref>
+
+ </list>
+
+</property>
+
+
+
+7. BEAN AUTOWIRING
+Avoids use of giving reference/property for each bean. Default is <bean autowire="off"></bean>
+Can be done by specifying 'autowire' attribute in '<bean>' tag of class where reference is required , with values as:
+
+a) "byName"  -  If name (id) of beans to be referenced is same as of member variables of class where they are required to be referenced.
+
+b) "byType"  -  If a class (type) has only one member var of ref class it automatically wires that var with bean of that ref class.
+
+c) "constructor"  -  Requires a constructor for autowiring , but class must have only one ref class var of ref bean.
+
+
+
+8. BEAN SCOPES
+scope of bean existence. Modified using 'scope' attribute of '<bean>' tag , with values as:
+
+a) singleton  -  same instance for each .getbean("id") of same id passed to class object
+
+b) prototype  -  a new instance is created for each reference or .getbean("id")
+
+c) request    -  new bean per servlet request
+
+d) global     -  new bean per session
+
+e) session    -  new bean per global HTTP session
+
+
+
+9. AWARE INTERFACES
+used to make application aware of that they are called. They are "implemented" with the classname
+
+a) ApplicationContextAware
+use of bean context in class , same as if using SPRING's .xml wiring
+
+b) BeanNameAware
+use of bean name (id) when called
+
+
+
+10. BEAN DEFINITION INHERITANCE
+bean defn can be inherited to be used within another bean using 'parent' attribute of <bean> tag and using "id" of bean defn to be inherited as value to 'parent' attrib.
+
+
+
+11. LIFECYCLE CALLBACKS
+An interface(s) that can be implemented similar to constructor and destructor for a bean.
+Requires AbstractApplicationContext  and  context.registerShutdownHook()   in mainjavaFILE (drawingapp.java) file
+
+a) InitializingBean
+constructor for bean   :  afterPropertiesSet()
+
+b) DisposableBean
+destructor for bean    :  destroy()
+
+-----------------------------we can use user defined constructor/destructor-------------------------------
+use following attributes of <bean> tag with values as "custom_func_name" , NOTE : func must be defined within the bean configured class.
+ 
+c) 'init-method'
+
+d) 'destroy-method'
+
+-----------------------------default constructor/destructor applicable to all beans can also be configured-----------
+use following attributes of <beans> tag with values as "custom_func_name" , NOTE : func can be defined in any bean configured class since it is common to all beans.
+
+e) 'default-init-method'
+
+f) 'default-destroy-method'
+
+NOTE : If both user defined and spring dependent constructor/destructor are used , SPRING dependent will be given priority.
+
+
+
+12. BeanPostProcessor
+A method can be defined for a bean such that they are called BEFORE and AFTER initialization of a bean.
+Requires methods : postProcessAfterInitialization(Object bean, String beanName)   and    postProcessBeforeInitialization(Object bean, String beanName)
 
 

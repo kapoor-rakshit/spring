@@ -3,6 +3,7 @@ package springproj;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.FileSystemResource;
 
@@ -28,13 +29,16 @@ public class drawingapp {
 		
 		// USING SPRING APPLICATION CONTEXT
 		
-	ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");          // Using SPRING APPLICATION CONTEXT (includes more features)
+	/* ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml"); */          // Using SPRING APPLICATION CONTEXT (includes more features)
 	                                                                                       // "spring.xml" must be in classpath ie src
 	// triangle triangle = (triangle) context.getBean("triangle");                 // use context to generate bean of "id"
     // triangle.draw();
 	
+		
 	
-	
+	AbstractApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+	context.registerShutdownHook();                             // to shut down IoC container in non-web applications
+	                                                           // Using the instance of AbstractApplicationContext, we call registerShutdownHook().
 	
 	
 	   /* OBJECT INJECTION */

@@ -1,10 +1,18 @@
 package springproj;
 
-public class triangle_objinjection {
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
+public class triangle_objinjection implements ApplicationContextAware , BeanNameAware , InitializingBean , DisposableBean{
 	
 	private point_for_triangle_objinjection pointA;
 	private point_for_triangle_objinjection pointB;
 	private point_for_triangle_objinjection pointC;
+	private ApplicationContext context = null;
 	
 	
 	
@@ -50,5 +58,48 @@ public class triangle_objinjection {
 		System.out.println("PointB = " + getPointB().getX() + ", " + getPointB().getY());
 		System.out.println("PointC = " + getPointC().getX() + ", " + getPointC().getY());
 	}
+
+
+                                            /* IMPLEMENTATION of AWARE INTERFACES */
+	@Override
+	public void setApplicationContext(ApplicationContext context) throws BeansException {
+		this.context = context;
+		
+		System.out.println("Am a watchdog for triangle_objinjection context. It is called");
+		
+	}
+
+
+
+	@Override
+	public void setBeanName(String beanname) {
+		System.out.println("Bean name is : " + beanname);
+		
+	}
+
+                                          /* IMPLEMENTATION of InitializingBean and DisposableBean */
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("Bean initialzed for triangle_objinjection");
+		
+	}
+
+
+
+	@Override
+	public void destroy() throws Exception {
+		System.out.println("Bean destroyed for triangle_objinjection.");
+		
+	}
+	
+	                                    /* Implementation of user defined CONSTRUCTOR and DESTRUCTOR */
+		public void initm() {
+			System.out.println("Bean inited");
+		}
+		
+		public void destm() {
+			System.out.println("Bean destroyed");
+		}
 
 }

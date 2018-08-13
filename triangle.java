@@ -35,5 +35,6 @@ public class triangle {
 	public void draw() {
 		System.out.println(getType() + " Triangle drawn " + getHeight());
 	}
+	
 
 }

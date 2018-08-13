@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 
-<beans>
+<beans default-init-method="initm" default-destroy-method="destm">
 
 <!-- A bean is an object with unique "id" and "class" as same of bean (object) created for -->
 
@@ -32,6 +32,13 @@
 <property name="pointC" ref="pointCBEAN"></property>
 
 </bean>
+
+
+<bean id="testingbean" class="springproj.triangle" abstract="true"></bean>
+
+
+<bean class="springproj.pracbeanpostprocessor"></bean>
+
 
 <bean id="pointABEAN" class="springproj.point_for_triangle_objinjection">            <!-- bean (objects) for point_triangle with their member vars-->
 <property name="x" value="1089"></property>
