@@ -7,7 +7,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-public class triangle_objinjection implements ApplicationContextAware , BeanNameAware , InitializingBean , DisposableBean{
+public class triangle_objinjection implements ApplicationContextAware , BeanNameAware , InitializingBean , DisposableBean, Shape{
 	
 	private point_for_triangle_objinjection pointA;
 	private point_for_triangle_objinjection pointB;
@@ -77,7 +77,7 @@ public class triangle_objinjection implements ApplicationContextAware , BeanName
 		
 	}
 
-                                          /* IMPLEMENTATION of InitializingBean and DisposableBean */
+                                          /* IMPLEMENTATION of SPRING DEPENDENT const/dest InitializingBean and DisposableBean */
 
 	@Override
 	public void afterPropertiesSet() throws Exception {

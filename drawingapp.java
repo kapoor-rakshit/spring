@@ -60,8 +60,8 @@ public class drawingapp {
 	
 	// USING SPRING
 	
-	triangle_objinjection tr = (triangle_objinjection) context.getBean("triangle");
-	tr.draw();
+	Shape sh = (Shape) context.getBean("circle");      // CHANGE BEAN TO GET REQUIRED CLASS AS INTERFACE SHAPE IS USED AND IMPLEMENTED IN EACH CLASS
+	sh.draw();
 	
 	}
 

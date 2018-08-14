@@ -165,3 +165,7 @@ A method can be defined for a bean such that they are called BEFORE and AFTER in
 Requires methods : postProcessAfterInitialization(Object bean, String beanName)   and    postProcessBeforeInitialization(Object bean, String beanName)
 
 
+
+13. INTERFACE CODING
+To make use of interface for calling (BEAN) classes accordingly in place of modifying the Class and Object for call.
+

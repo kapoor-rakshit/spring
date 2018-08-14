@@ -33,11 +33,17 @@
 
 </bean>
 
+<bean id="circle" class="springproj.circle">
+
+<property name="center" ref="pointABEAN"></property>
+
+</bean>
+
 
 <bean id="testingbean" class="springproj.triangle" abstract="true"></bean>
 
 
-<bean class="springproj.pracbeanpostprocessor"></bean>
+<bean class="springproj.pracbeanpostprocessor"></bean>               <!-- dummy bean to notify existence of BeanPostProcessor interface -->
 
 
 <bean id="pointABEAN" class="springproj.point_for_triangle_objinjection">            <!-- bean (objects) for point_triangle with their member vars-->
