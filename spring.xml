@@ -34,19 +34,17 @@
 </bean>
 
 <bean id="circle" class="springproj.circle">
-
-<property name="center" ref="pointABEAN"></property>
-
+<property name="center" ref="pointCBEAN"></property>
+<property name="msgsrc" ref="messageSource"></property>
 </bean>
 
 
-<bean id="testingbean" class="springproj.triangle" abstract="true"></bean>
+
+<bean class="springproj.pracbeanpostprocessor">
+</bean>                                                               <!-- dummy bean to notify existence of BeanPostProcessor interface -->
 
 
-<bean class="springproj.pracbeanpostprocessor"></bean>               <!-- dummy bean to notify existence of BeanPostProcessor interface -->
-
-
-<bean id="pointABEAN" class="springproj.point_for_triangle_objinjection">            <!-- bean (objects) for point_triangle with their member vars-->
+<bean id="pointABEAN" class="springproj.point_for_triangle_objinjection">       <!-- bean (objects) for point_triangle with their member vars-->
 <property name="x" value="1089"></property>
 <property name="y" value="1090"></property>
 </bean>
@@ -57,8 +55,26 @@
 </bean>
 
 <bean id="pointCBEAN" class="springproj.point_for_triangle_objinjection">
-<property name="x" value="9025"></property>
-<property name="y" value="4084"></property>
+<property name="x" value="902"></property>
+<property name="y" value="408"></property>
 </bean>
 
+                                                                           <!-- bean for MessageSource interface -->
+<bean id="messageSource" class = "org.springframework.context.support.ResourceBundleMessageSource">
+<property name="basenames">
+<list>
+<value>messages</value>                                                    <!-- name of .properties file from where keys are to be fetched -->
+</list>                                                                    <!-- file must be in classpath ie src -->
+</property>
+</bean>
+
+
+                                                                       <!-- BeanPostProcessor for checking "Required" Annotation -->
+<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor">
+</bean>
+
+<!-- <context:component-scan base-package="your_package_name"/> -->        <!-- for stereotype annotations to be searched -->
+
+
 </beans>
+

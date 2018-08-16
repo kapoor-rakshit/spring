@@ -29,7 +29,7 @@ public class drawingapp {
 		
 		// USING SPRING APPLICATION CONTEXT
 		
-	/* ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml"); */          // Using SPRING APPLICATION CONTEXT (includes more features)
+	  //ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");          // Using SPRING APPLICATION CONTEXT (includes more features)
 	                                                                                       // "spring.xml" must be in classpath ie src
 	// triangle triangle = (triangle) context.getBean("triangle");                 // use context to generate bean of "id"
     // triangle.draw();
@@ -62,6 +62,9 @@ public class drawingapp {
 	
 	Shape sh = (Shape) context.getBean("circle");      // CHANGE BEAN TO GET REQUIRED CLASS AS INTERFACE SHAPE IS USED AND IMPLEMENTED IN EACH CLASS
 	sh.draw();
+	
+	
+	System.out.println(context.getMessage("alias", null, "Default naam", null));   // (key , params_of_msg , default_msg , locale_file_name)
 	
 	}
 

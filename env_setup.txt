@@ -22,8 +22,9 @@ Download Apache common loggings   :  http://commons.apache.org/proper/commons-lo
 --------------------------------------------------------------------------NOTES-------------------------------------------------
 
 1. SPRING uses SPRING BEAN FACTORY to maintain OBJECT LIFECYCLE.
-   Each bean is configured with a class.
+   Each bean is CONFIGURED with a class and CONFIGURED for a object.
    The factory uses the XML file to generate/configure a bean and then later refer to the object.
+   "spring.xml" file must be in classpath ie src for ApplicationContext
 
 
 
@@ -136,36 +137,79 @@ bean defn can be inherited to be used within another bean using 'parent' attribu
 An interface(s) that can be implemented similar to constructor and destructor for a bean.
 Requires AbstractApplicationContext  and  context.registerShutdownHook()   in mainjavaFILE (drawingapp.java) file
 
-a) InitializingBean
-constructor for bean   :  afterPropertiesSet()
+a) InitializingBean Interface
+constructor method for bean   :  afterPropertiesSet()               defined in bean configured class
 
-b) DisposableBean
-destructor for bean    :  destroy()
+b) DisposableBean Interface
+destructor method for bean    :  destroy()                          defined in bean configured class
 
 -----------------------------we can use user defined constructor/destructor-------------------------------
-use following attributes of <bean> tag with values as "custom_func_name" , NOTE : func must be defined within the bean configured class.
+use following attributes of "<bean>" tag with values as "custom_func_name" , NOTE : func must be defined within the bean configured class.
  
 c) 'init-method'
 
 d) 'destroy-method'
 
 -----------------------------default constructor/destructor applicable to all beans can also be configured-----------
-use following attributes of <beans> tag with values as "custom_func_name" , NOTE : func can be defined in any bean configured class since it is common to all beans.
+use following attributes of "<beans>" tag with values as "custom_func_name" , NOTE : func can be defined in any bean configured class since it is common to all beans.
 
 e) 'default-init-method'
 
 f) 'default-destroy-method'
 
-NOTE : If both user defined and spring dependent constructor/destructor are used , SPRING dependent will be given priority.
+NOTE : If both user defined and SPRING DEPENDENT constructor/destructor are used , SPRING dependent will be given priority.
 
 
 
 12. BeanPostProcessor
-A method can be defined for a bean such that they are called BEFORE and AFTER initialization of a bean.
+A method can be defined for a bean such that they are called BEFORE and AFTER initialization of all bean(s).
 Requires methods : postProcessAfterInitialization(Object bean, String beanName)   and    postProcessBeforeInitialization(Object bean, String beanName)
 
 
 
 13. INTERFACE CODING
 To make use of interface for calling (BEAN) classes accordingly in place of modifying the Class and Object for call.
+
+
+
+14. ANNOTATIONS
+JSR 250 is a Java Specification Request with the objective to develop annotations (ie. information about a software program that is not part of the program itself).
+
+a) @Required                                   (exception handling for a reqd member var)  (used with setter method)
+                                               (Requires corresponding BeanPostProcessorClass bean defined in XML file for checking Annotations before bean init.)
+
+b) @Resource(name="id_of_bean")     xx         (provide a resource for member var instead of providing in property tag of bean)  (used with setter method)
+
+c) @Resource                        xx         (if member var and bean id name are same, use this)
+
+d) @PostConstruct                   xx         (Constructor from Annotations) (used with user defn func)
+
+e) @PreDestroy                      xx         (Destructor from Annotations)  (used with user defn func)
+
+--------------------------------------------------------STEREOTYPE ANNOTATIONS-----------------------------------------------------------
+conforming to a fixed or general pattern; especially : a standardized picture
+(Requires   <context:component-scan base-package="your_package_name"/>   to be defined in XML)  (used with class defn)
+
+f) @Component                                  (Notifies Spring container that this class is a bean, eliminates use of <bean></bean> defn in XML)
+                                               
+g) @Controller                                 (Notifies Spring container that this class is a Controller)
+
+h) @Service                                    (Notifies Spring container that this class is a Service)
+
+i) @Repository                                 (Notifies Spring container that this class is a Repository)
+
+
+
+15. MESSAGESOURCE
+It is used to get the messages text from .properties file , NOTE : .properties file must be in classpath ie src
+Define bean in .xml file for messageSource
+Call in the required class using   context.getMessage(key, param_vals, default_val, locale_file_name)  in class with Main func
+
+To call in a class which is not having Main func use : "MessageSource msgsrc_var"  declaration with setters and getters
+                                                       either use @Autowired or use ref of MessageSource Bean for property of var in class to initialize var
+                                                       use this.msgsrc_var.getMessage(key , new Object[] {center.getX(), center.getY()} , default_val , locale_file_name)
+                                                       
+Use {0} {1} {2} ... for param_vals args and not harcoded strings in .properties file
+
+locale_file_name is useful in case of referring to .properties file other than specified in bean ie it will override.
 
