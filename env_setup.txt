@@ -5,7 +5,7 @@ Reference : https://javabrains.thinkific.com/courses/take/learning-spring-core/m
 Download the latest release from  :  https://repo.spring.io/release/org/springframework/spring
 
                                   :  download zip file - spring-framework-XXX.RELEASE-dist.zip  and  extract
-                                     (This file contains all required .jars)
+                                     (This file/(bin folder) contains all required .jars)
 
 Download Apache common loggings   :  http://commons.apache.org/proper/commons-logging/download_logging.cgi
                                      (Download BINARY zip file  and  extract)
@@ -24,7 +24,7 @@ Download Apache common loggings   :  http://commons.apache.org/proper/commons-lo
 1. SPRING uses SPRING BEAN FACTORY to maintain OBJECT LIFECYCLE.
    Each bean is CONFIGURED with a class and CONFIGURED for a object.
    The factory uses the XML file to generate/configure a bean and then later refer to the object.
-   "spring.xml" file must be in classpath ie src for ApplicationContext
+   "spring.xml" file must be in classpath ie src of project for ApplicationContext and AbstractApplicationContext
 
 
 
@@ -198,10 +198,12 @@ h) @Service                                    (Notifies Spring container that t
 
 i) @Repository                                 (Notifies Spring container that this class is a Repository)
 
+j) @Aspect                                     (To notify container that this class is an ASPECT)
+
 
 
 15. MESSAGESOURCE
-It is used to get the messages text from .properties file , NOTE : .properties file must be in classpath ie src
+It is used to get the messages text from .properties file , NOTE : .properties file must be in classpath ie src of project
 Define bean in .xml file for messageSource
 Call in the required class using   context.getMessage(key, param_vals, default_val, locale_file_name)  in class with Main func
 
@@ -212,4 +214,48 @@ To call in a class which is not having Main func use : "MessageSource msgsrc_var
 Use {0} {1} {2} ... for param_vals args and not harcoded strings in .properties file
 
 locale_file_name is useful in case of referring to .properties file other than specified in bean ie it will override.
+
+
+
+16. EVENT HANDLING
+Refer : https://javabrains.thinkific.com/courses/take/learning-spring-core/multimedia/2844465-event-handling-in-spring
+
+
+
+17. ----------------------------------------------------------AOP (ASPECT ORIENTED PROGRAMMING)------------------------------------------------
+A model of programming where ASPECT CONFIG tells which method to apply for which class. ASPECTS wrap around methods.
+Steps involved ---> WRITE aspect ---> CONFIGURE where aspect apply to.
+
+Configure     SPRING  distribution .jars  as in previous notes
+              ASPECTJ distribution .jars for AOP by downloading from  :  http://www.eclipse.org/aspectj/downloads.php     ---> extract .jar file (without -src) and config lib .jar files
+              AOP Alliance distb   .jars                              :  https://sourceforge.net/projects/aopalliance/    or   http://www.java2s.com/Code/Jar/a/Downloadaopalliancejar.htm
+              CGLIB                .jars                              :  https://github.com/cglib/cglib
+              ASM distb            .jars                              :  https://asm.ow2.io/
+
+In spring.xml file include headers for AOP namespace tag(s).
+
+
+
+Create a new class (Logging) that will act as ASPECT, using
+@Aspect    :  To notify container that this class is an aspect
+@Before    :  Required Annotation(s) to attach method(s) calls with this aspect method
+@Component :  To make a java class as a BEAN    or   define bean in spring.xml file
+
+Use       <aop:aspectj-autoproxy/>      in spring.xml to notify that AOP class/bean exists
+
+To RESTRICT ASPECT advice being called on methods of other class(es) than required, use complete package_path of method  :  "execution(springAOPproj.model.Triangle.getName())"
+
+
+
+WILDCARDS and POINTCUTS
+To make the ASPECT method call attach to multiple methods use wildcards (*, ..) for pattern match   such that to call irrespective of RETURN_TYPE, METHOD_NAME etc...
+
+POINTCUT METHODS
+"execution"                        // specify a particuler method or pattern
+"within"                           // specify class to execute all methods of class
+
+@POINTCUT enables use of multiple ASPECTS being attached to a class method without need to write access annotation (eg:- @Before) again.
+
+@Before("pointcut1 && pointcut2")                       // combine multiple pointcuts using &&
+public void ASPECTMETHOD() { .. . }
 
