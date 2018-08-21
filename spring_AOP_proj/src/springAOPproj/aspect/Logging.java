@@ -1,6 +1,9 @@
 package springAOPproj.aspect;
 
 
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -25,7 +28,7 @@ public class Logging {
 	
 	
 //3.	
-//	@Before("execution(public * get*())")                    // run this advice(ASPECT) irrespective of return type and METHODname 
+//	@Before("execution(* * get*())")                    // run this advice(ASPECT) irrespective of access_specifier, return type and METHODname 
 //	public void loggingAdvice() {
 //		System.out.println("ASPECT called and ran...");
 //	}
@@ -49,6 +52,56 @@ public class Logging {
 	@Before("get_wale_method()")       
 	public void SecondloggingAdvice() {
 		System.out.println("Second ASPECT called and ran...");
+	}
+	
+	
+//5.   USE of @Around
+	
+	@Around("get_wale_method()")
+	public Object aroundadvice(ProceedingJoinPoint proceedingJoinPoint) {             // necessary var type
+		
+		Object retval = null;
+		
+		try {
+			
+			System.out.println("BEFORE from AROUND");
+			retval = proceedingJoinPoint.proceed();
+			System.out.println("AFTER_RETURNING from AROUND");
+			
+		}catch (Throwable e) {
+			
+			System.out.println("Exception occured in TARGET method. WORKS same as AFTER_THROWING");
+		
+		}finally {
+			
+			System.out.println("Will always work, AFTER");
+		}
+		return retval;
+	}
+	
+	
+//6.   USE of CUSTOM ANNOTATION
+	
+	@Around("@annotation(springAOPproj.aspect.Loggable)")                         // give path for CUSTOM ANNOTATION
+	public Object aroundadviceCUSTOM(ProceedingJoinPoint proceedingJoinPoint) {
+		
+		Object retval = null;
+		
+		try {
+			
+			System.out.println("BEFORE from AROUNDCUSTOM");
+			retval = proceedingJoinPoint.proceed();
+			System.out.println("AFTER_RETURNING from AROUNDCUSTOM");
+			
+		}catch (Throwable e) {
+			
+			System.out.println("Exception occured in TARGET method. WORKS same as AFTER_THROWING from AROUNDCUSTOM");
+		
+		}finally {
+			
+			System.out.println("Will always work, AFTER from AROUNDCUSTOM");
+		}
+		return retval;
 	}
 	
 }

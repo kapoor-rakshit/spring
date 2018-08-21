@@ -238,7 +238,7 @@ In spring.xml file include headers for AOP namespace tag(s).
 
 Create a new class (Logging) that will act as ASPECT, using
 @Aspect    :  To notify container that this class is an aspect
-@Before    :  Required Annotation(s) to attach method(s) calls with this aspect method
+@Before    :  Required ASPECT ADVICE Annotation(s) to attach method(s) calls with this aspect method
 @Component :  To make a java class as a BEAN    or   define bean in spring.xml file
 
 Use       <aop:aspectj-autoproxy/>      in spring.xml to notify that AOP class/bean exists
@@ -250,12 +250,28 @@ To RESTRICT ASPECT advice being called on methods of other class(es) than requir
 WILDCARDS and POINTCUTS
 To make the ASPECT method call attach to multiple methods use wildcards (*, ..) for pattern match   such that to call irrespective of RETURN_TYPE, METHOD_NAME etc...
 
-POINTCUT METHODS
-"execution"                        // specify a particuler method or pattern
-"within"                           // specify class to execute all methods of class
+
+ASPECT ADVICE ANNOTATION TYPES
+@Before                            // Run before statement executes
+@After                             // Run after statement executes
+@AfterReturning                    // Run only if statement executes without exception
+@AfterThrowing                     // Run if statement throws exception
+@Around                            // Solves purpose of @Before, @After, @AfterThrowing   // Offers feature to catch returned object from TARGET method
+
+
+ASPECT ADVICE METHODS
+"execution"                                              // specify a particuler method declaration or pattern
+"within"                                                 // specify class to execute all methods of class
+"args"
+"@annotation(package_name.CUSTOM_ANNOTATION_CLASS)"      // eliminates use of complex statements within POINTCUT(s) or PREDEFINED ASPECT_ANNOTATION
+                                                         // by using CUSTOM_ANNOTATIONS being mentioned with TARGET method to attach ADVICE with
+
 
 @POINTCUT enables use of multiple ASPECTS being attached to a class method without need to write access annotation (eg:- @Before) again.
 
 @Before("pointcut1 && pointcut2")                       // combine multiple pointcuts using &&
 public void ASPECTMETHOD() { .. . }
+
+
+
 
