@@ -23,4 +23,19 @@
 		
 		<bean id="loggingaspect" class="springAOPproj.aspect.Logging"></bean>
 		
+		
+		                                    <!-- XML way of config ASPECT, without using Annotations in class -->
+<!-- 		<aop:config> -->
+		
+<!-- 		  <aop:aspect id="logging" ref="loggingaspect"> -->                                <!-- BEAN id which is to be made ASPECT -->
+		
+<!-- 		     <aop:pointcut id="pointcut_for_get" expression="execution(* * get*())"/> -->
+                                                                                                <!-- similarly <aop:before>, <aop:after>, etc... -->
+<!-- 		     <aop:around pointcut-ref="pointcut_for_get" method="ADVICE_METHOD_of_ASPECT"/> -->
+		
+<!-- 		  </aop:aspect> -->
+		
+<!-- 		</aop:config> -->
+		
+		
 </beans>

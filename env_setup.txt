@@ -265,6 +265,7 @@ ASPECT ADVICE METHODS
 "args"
 "@annotation(package_name.CUSTOM_ANNOTATION_CLASS)"      // eliminates use of complex statements within POINTCUT(s) or PREDEFINED ASPECT_ANNOTATION
                                                          // by using CUSTOM_ANNOTATIONS being mentioned with TARGET method to attach ADVICE with
+                                                         // (eg:- @Loggable attached to getTriangle() TARGET in ShapeService to call ADVICE in Logging)
 
 
 @POINTCUT enables use of multiple ASPECTS being attached to a class method without need to write access annotation (eg:- @Before) again.
@@ -274,4 +275,35 @@ public void ASPECTMETHOD() { .. . }
 
 
 
+-----------------XML way of configuring ASPECT class, without using Annotations----------------------
+
+Refer    <aop:config>    </aop:config>     tag in spring.xml for syntax.
+
+
+
+18. ----------------------------------------------SPRING DATA ACCESS (JDBC)--------------------------------------
+
+Setup a database on dev machine (eg:- APACHE DERBY)
+. download APACHE DERBY XXXX-bin-zip file from  :  https://db.apache.org/derby/derby_downloads.html      and     extract
+
+. setup ENVIRONMENT VARIABLES
+.. DERBY_HOME   val to  (dir which contains bin, lib, and other dirs)
+.. Path         add val (DERBY_HOME\bin)
+
+
+APACHE DERBY comes in SERVER mode and EMBEDDED mode
+. To start DB in server mode, open terminal, run ./startNetworkServer (in UNIX/Mac) or startNetworkServer.bat (in Windows)
+
+. DERBY comes with a client called ij, open other terminal window, run ./ij  (in UNIX/Mac) or ij.bat (in Windows)
+
+. create connection to DB using ij client via connection string  :  connect 'jdbc:derby://localhost:1527/Shapes;create=TRUE;';
+.. connect to SHAPES DB if exists else CREATE DB
+.. create table, insert values etc... with SQL commands
+.. to quit ij client run                                         :  exit;
+
+
+Add DERBY libs to JAVA_BUILD   ie   derby.jar
+                                    derbyclient.jar
+
+Create a DAO (Data Access Object) class and initialize DRIVERS, CONNECTIONS, etc...
 
