@@ -101,6 +101,9 @@ b) "byType"  -  If a class (type) has only one member var of ref class it automa
 c) "constructor"  -  Requires a constructor for autowiring , but class must have only one ref class var of ref bean.
 
 
+It can also be done using @Autowired annotation.
+
+
 
 8. BEAN SCOPES
 scope of bean existence. Modified using 'scope' attribute of '<bean>' tag , with values as:
@@ -188,7 +191,8 @@ e) @PreDestroy                      xx         (Destructor from Annotations)  (u
 
 --------------------------------------------------------STEREOTYPE ANNOTATIONS-----------------------------------------------------------
 conforming to a fixed or general pattern; especially : a standardized picture
-(Requires   <context:component-scan base-package="your_package_name"/>   to be defined in XML)  (used with class defn)
+
+NOTE  :  (Requires   <context:component-scan base-package="your_package_name"/>   to be defined in XML)  (used with class defn)
 
 f) @Component                                  (Notifies Spring container that this class is a bean, eliminates use of <bean></bean> defn in XML)
                                                
@@ -305,5 +309,29 @@ APACHE DERBY comes in SERVER mode and EMBEDDED mode
 Add DERBY libs to JAVA_BUILD   ie   derby.jar
                                     derbyclient.jar
 
-Create a DAO (Data Access Object) class and initialize DRIVERS, CONNECTIONS, etc...
+NOTE : Make sure database is running while Running your application.
+
+Create a DAO (Data Access Object) class and initialize DRIVERS, CONNECTIONS, QUERY, EXECUTE, PARSE RESULTS  etc...
+
+
+
+DATABASE CONNECTION POOLING (DBCP)
+Creating a new connection for each user can be time consuming, in order to perform a database transaction that might take milliseconds.
+Opening a connection per user can be unfeasible in a publicly-hosted Internet application where the number of simultaneous users can be very large.
+Accordingly, developers often wish to share a "pool" of open connections between all of the application's current users.
+The number of users actually performing a request at any given time is usually a very small percentage of the total number of active users, 
+and during request processing is the only time that a database connection is required.
+
+Download DBCP and POOL from  :  http://commons.apache.org/proper/commons-dbcp/      and      https://commons.apache.org/proper/commons-pool/
+Configure in spring.xml with other properties.
+
+
+
+SPRING JDBC TEMPLATE
+Provides code lines reduction using inbuilt template(s)
+Generate getter(s) setter(s) for DataSource, JdbcTemplate vars in DAOCLASS
+Initialize JdbcTemplate with a datasource    and     query over it.
+
+Provides multiple return types , check DAOCLASS
+
 

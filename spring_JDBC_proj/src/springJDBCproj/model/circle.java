@@ -11,6 +11,10 @@ public class circle {
 		setName(name);
 	}
 	
+	public circle() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}
