@@ -1,5 +1,7 @@
 package springJDBCproj;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -22,7 +24,7 @@ public class mainclass {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 		daoclass dao = context.getBean("daoid", daoclass.class);
 		
-		circle circle = dao.getCircle(4084);                            // 1.
+		circle circle = dao.getCircle(4084);                            // 1. READ
 		System.out.println(circle.getName());
 		
 		System.out.println(dao.getCount());                             // 2.
@@ -31,7 +33,22 @@ public class mainclass {
 		
 		circle crcobj = dao.getcircleobj(9025);                         // 4.
 		System.out.println(crcobj.getId() + "  " + crcobj.getName());
-
+		
+		List<circle> reclist = dao.getallrows();                        // 5.
+		for(circle recdet : reclist) {
+			System.out.println(recdet.getId() + " " + recdet.getName()); 
+		}
+		
+		// dao.insertrecs(new circle(4095, "RK"));                           // 6. INSERT
+		
+		// dao.delrec("RK");                                                 // 7. DELETE
+		
+		// dao.updaterec();                                                  // 8. UPDATE/ALTER
+		
+		// dao.createtable();                                                // 9. CREATE TABLE
+		
+		dao.insertNamedvals(new circle(1090, "JG", 58));                     // 10. NAMEDPARAM JDBCTEMPLATE
+		
 	}
 
 }

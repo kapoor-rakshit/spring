@@ -3,6 +3,7 @@ package springJDBCproj.model;
 public class circle {
 	
 	int id;
+	int height;
 	String name;
 	
 	
@@ -11,7 +12,21 @@ public class circle {
 		setName(name);
 	}
 	
-	public circle() {
+	public circle(int id, String name, int height) {
+		setId(id);
+		setName(name);
+		setHeight(height);
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public circle() {                                    // CONSTRUCTOR for ROWMAPPER
 		// TODO Auto-generated constructor stub
 	}
 

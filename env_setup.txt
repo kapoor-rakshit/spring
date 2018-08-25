@@ -332,6 +332,13 @@ Provides code lines reduction using inbuilt template(s)
 Generate getter(s) setter(s) for DataSource, JdbcTemplate vars in DAOCLASS
 Initialize JdbcTemplate with a datasource    and     query over it.
 
-Provides multiple return types , check DAOCLASS
+CREATE table.........................................., check DAOCLASS
 
+Provides multiple RETURN types (OBJECTs, LIST, etc...), check DAOCLASS
+
+INSERT data, UPDATE/ALTER data, DELETE data  etc ...  check DAOCLASS
+
+NOTE : LIMITATION of JDBC TEMPLATE is that it need to be used for referring (supplying values) the '?' placeholder in an order.
+       So we use     NamedParameterJDBCTemplate for NAMED PLACEHOLDERS                 OR
+                     SimpleJDBCTemplate         for both NAMED and '?' PLACEHOLDERS
 
