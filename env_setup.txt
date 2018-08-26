@@ -342,3 +342,15 @@ NOTE : LIMITATION of JDBC TEMPLATE is that it need to be used for referring (sup
        So we use     NamedParameterJDBCTemplate for NAMED PLACEHOLDERS                 OR
                      SimpleJDBCTemplate         for both NAMED and '?' PLACEHOLDERS
 
+
+DAO SUPPORT CLASSES
+To reduce line of codes for getter(s)/setter(s) for instantiating JDBCTemplate, NamedPARAMETERJDBCTemplate, SimpleJDBCTemplate... etc.
+SPRING provides DAO SUPPORT class(es) like JdbcDAOSUPPORT
+                                           NamedPARAMETERJdbcDAOSUPPORT
+which are required to be extended by our java daoclass.
+
+
+
+INTEGRATE HIBERNATE with SPRING    (TODO for kapoor-rakshit)
+Refer  :  https://javabrains.thinkific.com/courses/take/spring-data-access/multimedia/2934844-using-hibernate-with-spring
+

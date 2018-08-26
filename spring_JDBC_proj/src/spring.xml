@@ -10,6 +10,11 @@
 		 <bean id="daoid" class="springJDBCproj.dao.daoclass" autowire="byName">
 		 </bean>                       <!-- member var in this class is spell same as below bean id so use autowire, instead ref-->
 		 
+		 <bean id="daosupportid" class = "springJDBCproj.dao.daosupportclass" autowire="byName">
+		 </bean>
+		                               <!-- NamedParameterJdbcSupportClass has var dataSource, so use autowire -->
+		                               
+<!-- DATASOURCE --> 
 		 
 <!-- 		 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
 <!-- 		 <property name = "driverClassName" value="org.apache.derby.jdbc.ClientDriver"/> -->
@@ -17,8 +22,7 @@
 <!-- 		 </bean> -->
 
 
-
-<!-- USING DB CONNECTION POOLING -->
+<!-- USING DB CONNECTION POOLING for DATASOURCE-->
 
 		 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		 <property name = "driverClassName" value="org.apache.derby.jdbc.ClientDriver"/>

@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import springJDBCproj.dao.daoclass;
+import springJDBCproj.dao.daosupportclass;
 import springJDBCproj.model.circle;
 
 public class mainclass {
@@ -47,7 +48,12 @@ public class mainclass {
 		
 		// dao.createtable();                                                // 9. CREATE TABLE
 		
-		dao.insertNamedvals(new circle(1090, "JG", 58));                     // 10. NAMEDPARAM JDBCTEMPLATE
+		// dao.insertNamedvals(new circle(4086, "MS", 58));                  // 10. NAMEDPARAM JDBCTEMPLATE
+		
+
+		                                                                    //  11. DAO SUPPORT CLASS
+		daosupportclass daosup = context.getBean("daosupportid", daosupportclass.class);
+		daosup.insertNamedvals(new circle(4084, "TA", 58));
 		
 	}
 

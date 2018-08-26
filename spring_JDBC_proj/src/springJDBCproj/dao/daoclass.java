@@ -140,17 +140,19 @@ public class daoclass {
 		}
 	}
 	                                                                  // 6. INSERT values
-																	  // sql statement , comma sep args	
+																	  //    sql statement , comma sep args	
 	public void insertrecs(circle crcobj) {                          
 		String sqlstmt = "INSERT into CIRCLE (ID, NAME) values (?, ?)";
 		jdbcTemplate.update(sqlstmt, new Object[] {crcobj.getId(), crcobj.getName()});
 	}
 	
 	
+	
 	public void delrec(String objname) {                              // 7. DELETE
 		String sqlstmt = "DELETE from CIRCLE where name = ?";
 		jdbcTemplate.update(sqlstmt, objname);
 	}
+	
 	
 	
 	public void updaterec() {                                         // 8. UPDATE/ALTER
@@ -160,17 +162,20 @@ public class daoclass {
 		jdbcTemplate.update(sqlstmt2);
 	}
 	
+	
 	                                                                  // 9. CREATE TABLE
 	public void createtable() {                                      
 		String sqlstmt = "CREATE table triangle (id integer primary key, name varchar(80) not null)";
 		jdbcTemplate.execute(sqlstmt);
 	}
 	
+	
 	                                                                 // 10. USING NAMEDPARAM JDBCTEMPLATE
 	public void insertNamedvals(circle crcobj) {
-		String sqlstmt = "INSERT into triangle (ID, NAME) values (:idval, :nameval)";    // MIND the ':'
+		String sqlstmt = "INSERT into triangle (ID, NAME, HEIGHT) values (:idval, :nameval, :htval)";    // MIND the ':'
 		SqlParameterSource namedparams = new MapSqlParameterSource("idval", crcobj.getId())
 				                             .addValue("nameval", crcobj.getName())
+				                             .addValue("htval", crcobj.getHeight())
 				                             ;
 		namedParameterJdbcTemplate.update(sqlstmt, namedparams);
 	}
