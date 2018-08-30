@@ -1,0 +1,92 @@
+
+Reference  :  https://javabrains.thinkific.com/courses/take/springboot-quickstart/multimedia/2775600-introduction
+
+SPRING BOOT is a tool which allows us to create SPRING based applications which are
+STAND-ALONE
+PRODUCTION-GRADE (not merely a Hello World !)
+JUST_RUN principle
+
+
+LIMITATIONS of SPRING , MIND it's SPRING not SPRING BOOT
+Huge framework which can do a lot......Comes with flexibility and functionality but at a cost
+Multiple setup/config steps
+
+
+
+SETTING UP
+.JAVA JDK
+
+.SPRING STS (Tool Suite)                   or              Eclipse IDE
+..  from  :  https://spring.io/tools/sts/
+
+    NOTE  : PLEASE MAKE SURE OF YOUR VERSION OF ECLIPSE and then DOWNLOAD
+
+..  The Spring Tool Suite is an Eclipse-based development environment that is customized for developing Spring applications.
+    It parses your configuration files and displays detailed information about the beans that are being define.
+    It provides a comprehensive set of validations that are being applied automatically
+    Spring Tool Suite provides you with meaningful content-assist all over the place
+..  Extract and run STS.exe.
+
+.MAVEN
+..  from  :  https://maven.apache.org/download.cgi
+..  It is a BUILD DEPENDENCY MANAGEMENT TOOL, which allows us to include all libs reqd by specifying in "pom.xml" file
+    and later MAVEN extracts all these dependencies/jars from a REPO instead of MANUAL DOWNLOADING .jars and including in proj
+..  Extract and add \bin dir value (eg:- D:\apache-maven-3.5.4\bin) to PATH var in edit SYSTEM/ACCOUNT variables.
+    Make sure "JAVA_HOME" is set to the location of your JDK
+
+                    in edit SYSTEM/ACCOUNT variables.
+    Run "mvn --version" to verify
+
+.GRADLE
+
+
+
+NEW PROJECT
+. OPEN STS (Tool suite)    or    Eclipse IDE
+
+. CREATE a new GRADLE project or MAVEN project
+
+. for PROXY settings configure settings.xml (MAVEN) OR gradle.properties (GRADLE) file in root folder of PROJECT
+
+. Configure DEPENDENCIES in pom.xml (MAVEN) or build.gradle (GRADLE) with groupID (PACKAGE NAME) , artifactID (PROJECT NAME) , VERSION
+..   for creating a .war a this(s) file is required
+..   This can be done by copying the required complie line from   ""https://mvnrepository.com/""
+
+
+. DOWNLOAD all required .jars from    "https://mvnrepository.com/"    or   "https://jar-download.com/"
+..   Required for LOCAL MACHINE run.
+...     spring-boot-starter-parent     and    spring-boot-starter
+...     spring-boot-starter-web
+...     spring-core
+
+. To tell IDE that run it as a SPRINGBOOT proj use annotation :
+@SpringBootApplication  for the mainclass
+@RestController         for a controllerclass to be searched by APP
+@RequestMapping         for mapping URL(s) for controllerclass
+@Autowired              for injecting a class in other via var
+@Service                for registering a class as Service
+@PathVariable           for supplying value in url var to method var
+@RequestBody            for converting content received via POST request to an instance of class
+
+
+. NOTE  :  Application requires to be relaunched to see necessary changes , STOP and RUN , else will generate error of cannot connect on port
+
+
+. SpringApplication.run() is a static class with static method "run()"  which
+..   sets default config
+..   starts springApplication context
+..   Performs Classpath scan.... like Annotation scan   etc..
+..   Starts TOMCAT server....... NO NEED to install , it comes with builtin service for it.
+
+
+.REQUESTS
+
+.. GET
+
+.. POST  :  done via POSTMAN , get application from CHROMESTORE
+            change method to POST
+            enter desired url to send request to   (configured in controllerclass)
+            go to HEADERS tab and add key CONTENT-TYPE value application/json
+            go to BODY tab and add your json key-val pairs as a RAW data
+
+

@@ -15,9 +15,10 @@ Download Apache common loggings   :  http://commons.apache.org/proper/commons-lo
 1. On a new project in EclipseIDE
 
 . Right click proj ---> Properties ---> Java Build Path ---> Libraries ---> Add library ---> userlibrary ---> UserLibraries
-. either select already existing userlib or create NEW (name userlib)  ---> Add external jars ---> add SPRING and APACHE_COMMON_LOGGINGS jars from downloaded files above
+. either select already existing userlib or create NEW (name userlib)  ---> Add jars to lib dir ---> add SPRING and APACHE_COMMON_LOGGINGS jars from downloaded files above
 
-
+NOTE : ALL .jars must be added in lib (mkdir yourself) dir at root of project
+       ALL  sources file must be added in lib --> src (mkdir yourself)
 
 --------------------------------------------------------------------------NOTES-------------------------------------------------
 
