@@ -69,7 +69,7 @@ NEW PROJECT
 @RequestBody            for converting content received via POST request to an instance of class
 
 
-. NOTE  :  Application requires to be relaunched to see necessary changes , STOP and RUN , else will generate error of cannot connect on port
+. NOTE  :  Application requires to be relaunched to see necessary changes , STOP and RUN , else will generate error of cannot connect on port (already in use)
 
 
 . SpringApplication.run() is a static class with static method "run()"  which
@@ -84,9 +84,46 @@ NEW PROJECT
 .. GET
 
 .. POST  :  done via POSTMAN , get application from CHROMESTORE
-            change method to POST
+            change method to POST  (CREATE request)
             enter desired url to send request to   (configured in controllerclass)
             go to HEADERS tab and add key CONTENT-TYPE value application/json
-            go to BODY tab and add your json key-val pairs as a RAW data
+            go to BODY tab and add your json key-val pairs as a RAW data by selecting RAW radiobutton
 
+.. PUT   :  It is an UPDATE request
+
+.. DELETE
+
+
+
+.OTHER ALTERNATIVES to BOOTING a SPRING PROJ
+
+..   SPRING INITIALIzr    :    "https://start.spring.io/"
+..   SPRINGBOOT CLI       :    "https://spring.io/"
+..   STS IDE              :     Create a new SPRING STARTER PROJECT
+
+
+
+.CONFIGURING PROPERTIES OF APPLICATION   ( server.port , debug etc... )
+
+..   use "application.properties"  file  and  configure properties as a key=value pair.
+     example : set SERVER PORT using server.port key
+
+..   REFER   "https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html"   for keys
+
+
+
+.SPRING DATA JPA    (DATABASE - CRUD)
+..   It (JAVA Persistence API) is a framework which uses ORM (Object Relational Mapping) for DATABASE and OBJECT(s) mapping.
+..   Include DERBY (DATABASE)              .jars  and  compile statement in build.gradle
+..   Include SPRING_BOOT_STARTER_DATA_JPA  .jars  and  compile statement in build.gradle
+..   Include JAVAX.PERSISTENCE             .jars  and  compile statement in build.gradle
+
+..   CONFIGURE ENTITY ie a class that contains desired member vars for table columns using
+...      @Entity     :  REGISTER as an ENTITY for making member vars as columns in TABLE entity
+...      @Id         :  REGISTER desired member var as a PRIMARY key
+
+..   CONFIGURE a JPA REPOSITORY "INTERFACE" not class , by extending CrudRepository<ENTITY_CLASS , PRIMARY_KEY_DATA_TYPE>
+...      It comes with SPRING-JPA
+...      Include   org.springframework.data : spring-data-commons  .jars   and   build.gradle  compile statement
+...      Create a member var of this REPOSITORY INTERFACE in SERVICE CLASS    with    @Autowired
 

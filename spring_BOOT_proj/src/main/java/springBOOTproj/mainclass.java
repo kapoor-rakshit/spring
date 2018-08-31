@@ -14,7 +14,12 @@ public class mainclass {
 		
 		 /* Reference : https://www.baeldung.com/spring-boot-change-port  for changing default TOMCAT port in SPRINGBOOT */
 		/* refer serverport.java file as well */
-		app.setDefaultProperties(Collections.singletonMap("server.port", "5000"));
+		// app.setDefaultProperties(Collections.singletonMap("server.port", "5000"));
+		
+		// CONFIGURE application.properties file in src/main/resources (MKDIR by me) SOURCE folder
+		// for server PORT and other settings
+		// for all available keys
+		// https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 		
 		app.run(args);
 		

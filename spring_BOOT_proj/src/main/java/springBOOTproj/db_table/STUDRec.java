@@ -1,8 +1,14 @@
 package springBOOTproj.db_table;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity                          /* REGISTER as an ENTITY for making member vars as columns in TABLE entity */
 public class STUDRec {
 	
+	@Id                          /* REGISTER desired member var as a PRIMARY key */
 	int roll;
+
 	String firstname, lastname;
 	
 	public STUDRec() {

@@ -23,7 +23,7 @@ public class ControllerClass {
 
 	@RequestMapping("/home")             /* 1. This will work for /home/ as well but not vice-versa */
 	public String homeagain() {
-		return "AGAIN HOME page";
+		return "AGAIN HOME page pe hi aa gye !";
 	}
 	
 	                                    /* 2. Return OBJECT from controller with a suitable conversion (handled by SPRING MVC) to server */
@@ -35,7 +35,7 @@ public class ControllerClass {
 //				);
 //	}
 	
-	                                  /* 3. Return OBJECT using SERVICE */
+	                                    /* 3. Return OBJECT using SERVICE CLASS*/
 	@Autowired
 	public StudService studservice;
 	
@@ -44,17 +44,33 @@ public class ControllerClass {
 		return studservice.getAllvals();
 	}
 	
-	                                  /* 4. Return OBJECT for only a particular record , var in url */
+	                                    /* 4. Return OBJECT for only a particular record , var in url */
+	
 	@RequestMapping("/stud/{var}")
-	public STUDRec getREC(@PathVariable("var") int roll) {
+	public STUDRec getREC(@PathVariable("var") int roll) {           // notify that roll = var
 		return studservice.getrecId(roll);
 	}
 	
-	                                   /* 5. POST request on a method */
+	                                   /* 5. POST (CREATE) request on a method */
 	
 	@RequestMapping(method=RequestMethod.POST, value="/stud")         // define POST request on which url
 	public void addstud(@RequestBody STUDRec stud) {                 //convert JSON received to an instance of class
 		studservice.addSTUD(stud);
 	}
 	
+	
+	                                   /* 6. PUT request (UPDATE) */
+	
+	@RequestMapping(method=RequestMethod.PUT, value="/stud/{var}")
+	public void updatestud(@RequestBody STUDRec stud , @PathVariable("var") int roll) {
+		studservice.updateSTUD(roll, stud);
+	}
+	
+	
+	                                    /* 7. DELETE request */
+	
+	@RequestMapping(method=RequestMethod.DELETE , value="/stud/{var}")
+	public void deletestud(@PathVariable("var") int roll) {
+		studservice.deleteSTUD(roll);
+	}
 }
