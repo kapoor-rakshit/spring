@@ -22,6 +22,31 @@ NOTE : ALL .jars must be added in lib (mkdir yourself) dir at root of project
 
 --------------------------------------------------------------------------NOTES-------------------------------------------------
 
+SPRING is an open source J2EE Application Framework using which we can easily create J2EE apps.
+This is achieved by enabling POJO based programming model.
+It has CONTAINER which has POJOs , FRAMEWORK for managing COMPONENTS (POJOs), SNAP in SERVICES.
+ADVANTAGES of SPRING:
+   It provides enterprise services to POJO.
+   Easy to unit test.
+   Provides DEPENDENCY INJECTION flavor of IOC (inversion of control).
+   
+SPRING is not J2EE Application Server.
+There is no dependency on framework.
+It integrates well with ORM mapping framework like HIBERNATE.
+It provides SPRING MVC, to create MVC based application.
+It consists of modules like:
+    SPRING AOP
+    SPRING ORM
+    SPRING WEB
+    SPRING DAO
+    SPRING CONTEXT
+    SPRING WEB MVC
+    SPRING CORE
+    
+BeanFactory is a CONTAINER that provides basic/core facilities.
+ApplicationContext is also a CONTAINER provides advanced/additional facilities.
+
+
 1. SPRING uses SPRING BEAN FACTORY to maintain OBJECT LIFECYCLE.
    Each bean is CONFIGURED with a class and CONFIGURED for a object.
    The factory uses the XML file to generate/configure a bean and then later refer to the object.
